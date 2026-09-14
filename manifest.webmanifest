@@ -1,0 +1,19 @@
+{
+  "name":"CharlySki",
+  "short_name":"CharlySki",
+  "description":"Le copilote montagne de Charlie : stations, météo, CharlyDex et télémétrie GPS.",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "orientation":"portrait-primary",
+  "background_color":"#06111f",
+  "theme_color":"#06111f",
+  "icons":[
+    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ],
+  "shortcuts":[
+    {"name":"Explorer les stations","url":"./#explore"},
+    {"name":"Démarrer une sortie","url":"./#track"}
+  ]
+}

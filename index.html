@@ -1,8 +1,76 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#06111f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="CharlySki"><title>CharlySki</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/icon-192.png"><link rel="icon" href="icons/icon-192.png"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""><link rel="stylesheet" href="v3.css"></head><body><div class="app"><header class="top"><div><div class="brand">CHARLYSKI 1.0</div><h1>Salut Charlie 👋</h1></div><button id="installTop" class="small" style="padding:0 12px">📲 Installer</button></header><main>
-<section class="view on" data-view="home"><div class="hero"><div><div class="brand" style="color:var(--mint)">TON COPILOTE MONTAGNE</div><h2>Où skier ?</h2><p>Météo réelle, neige fraîche, vent, altitude, trajet estimé et bonus découverte.</p></div><div style="font-size:3.4rem;align-self:end">⛷️</div></div><div class="segments"><button class="seg on" data-day="0">Aujourd’hui</button><button class="seg" data-day="1">Demain</button><button class="seg" data-day="2">+2 jours</button></div><article id="best" class="card best"><span class="badge">🏔️ CHARLYSCORE</span><h3>Chargement météo…</h3></article><div class="head"><h3>Powder Alert ❄️</h3><button id="refresh" class="link">Actualiser</button></div><div id="powder" class="powder"></div><div class="head"><h3>Top recommandations</h3><button id="locBtn" class="link">📍 Ma position</button></div><div id="preview" class="list"></div></section>
-<section class="view" data-view="explore"><div class="section-title"><div class="brand">CATALOGUE TRANSFRONTALIER</div><h2>Explorer</h2><p class="mut">France + Valais, avec collection, météo et fiches détaillées.</p></div><div class="toggles"><button class="pillbtn on" data-mode="list">☷ Liste</button><button class="pillbtn" data-mode="map">🗺️ Carte</button></div><div class="filters"><input id="search" placeholder="Rechercher une station…"><select id="region"><option value="all">Toutes les régions</option></select></div><div class="toggles"><button class="pillbtn on" data-filter="all">Toutes</button><button class="pillbtn" data-filter="fav">⭐ Favoris</button><button class="pillbtn" data-filter="pass">🎟️ Passe</button><button class="pillbtn" data-filter="unseen">🧭 À découvrir</button></div><div id="stationList"></div><div id="stationMap" class="map hidden"></div></section>
-<section class="view" data-view="dex"><div class="section-title"><div class="brand">CHARLYDEX</div><h2>Ma collection</h2><p class="mut">Collectionne toutes les stations et débloque des trophées.</p></div><div id="collectionHero" class="card collection-hero"></div><div class="head"><h3>Trophées</h3></div><div id="trophies" class="trophies"></div><div class="head"><h3>Progression par région</h3></div><div id="regionStats" class="regionstats"></div><div class="head"><h3>Stations</h3><button id="onlyUnseen" class="link">À découvrir</button></div><div id="dex" class="dex"></div></section>
-<section class="view" data-view="track"><div class="section-title"><div class="brand">TÉLÉMÉTRIE GPS</div><h2>Ma sortie</h2><p class="mut">GPS local : vitesse, distance, altitude, D+/D−, tracé et GPX.</p></div><div class="card form"><label>Station<select id="sessionStation"></select></label><div class="session-grid" style="margin-top:12px"><div class="card tele"><strong id="speed">0</strong><small>km/h actuel</small></div><div class="card tele"><strong id="avgSpeed">0</strong><small>km/h moyen</small></div><div class="card tele"><strong id="maxSpeed">0</strong><small>km/h max</small></div><div class="card tele"><strong id="distance">0.00</strong><small>km</small></div><div class="card tele"><strong id="alt">—</strong><small>altitude m</small></div><div class="card tele"><strong id="maxAlt">—</strong><small>alt. max m</small></div><div class="card tele"><strong id="gain">0</strong><small>D+ m</small></div><div class="card tele"><strong id="drop">0</strong><small>D− m</small></div><div class="card tele"><strong id="descents">0</strong><small>descentes*</small></div><div class="card tele"><strong id="duration">00:00</strong><small>durée</small></div></div><div id="trackMap" class="map short" style="margin-top:12px"></div><div id="gpsState" class="gpsstate">GPS arrêté. Les données ne quittent pas ce téléphone.</div><div class="sessionBtns"><button id="startGps" class="primary">▶ Démarrer</button><button id="stopGps" class="danger" disabled>■ Terminer</button></div><button id="gpxCurrent" class="small" style="width:100%;margin-top:8px" disabled>⬇️ Exporter GPX</button></div><p class="note">*Le nombre de descentes est une estimation à partir du profil altitude. Sur iOS/Android, garde CharlySki actif pour éviter la suspension du GPS écran verrouillé.</p></section>
-<section class="view" data-view="me"><div class="section-title"><div class="brand">MON CHARLYSKI</div><h2>Saison & réglages</h2></div><div id="seasonStats" class="metrics"></div><div class="head"><h3>Mes sorties</h3></div><div id="history" class="history"></div><div class="head"><h3>Checklist</h3><button id="resetChecks" class="link">Réinitialiser</button></div><div class="card"><div id="progress" class="brand" style="margin-bottom:5px"></div><div id="checks"></div></div><div class="head"><h3>Installer CharlySki</h3></div><div class="card installbox"><b>📲 Comme une application</b><p id="installHelp" class="mut" style="margin:0">Utilise le bouton Installer ou le menu de partage de ton navigateur.</p><button id="installBtn" class="primary">Installer / instructions</button></div><div class="head"><h3>Sauvegarde</h3></div><div class="card"><p class="mut" style="margin-top:0">Exporte collection, profils et sorties pour changer de téléphone sans perdre ta saison.</p><div class="backupBtns"><button id="exportData" class="small">⬇️ Exporter mes données</button><label class="small" style="display:grid;place-items:center">⬆️ Importer<input id="importData" type="file" accept="application/json" hidden></label></div></div></section>
-</main></div><nav class="nav"><button class="on" data-target="home">⌂<small>Accueil</small></button><button data-target="explore">△<small>Explorer</small></button><button data-target="dex">◈<small>CharlyDex</small></button><button data-target="track">◎<small>Sortie</small></button><button data-target="me">☺<small>Moi</small></button></nav><dialog id="dialog"><div id="dialogContent"></div><button id="closeDialog" class="small" style="width:100%;margin-top:10px">Fermer</button></dialog>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><script src="v3-data.js"></script><script src="v3-app.js"></script></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#030b1c">
+<meta name="description" content="Skiory — explore les stations, compare les conditions, collectionne tes domaines et analyse tes sorties GPS.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Skiory">
+<title>Skiory · Explore Track Higher</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="v3.css">
+</head>
+<body>
+<div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+<div class="app">
+<header class="top">
+  <a class="brand-lockup" href="#" aria-label="Skiory">
+    <img src="assets/skiory-logo.webp" alt="Skiory">
+  </a>
+  <button id="installTop" class="small install-top">＋ Installer</button>
+</header>
+<main>
+<section class="view on" data-view="home">
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="brand">EXPLORE · TRACK · HIGHER</div>
+      <h2>La montagne,<br><span>mieux choisie.</span></h2>
+      <p>Conditions météo, neige, proximité, découverte et télémétrie réunies dans une seule expérience.</p>
+      <div class="hero-pills"><span>❄️ Météo live</span><span>◎ GPS</span><span>◈ Collection</span></div>
+    </div>
+    <div class="hero-mark"><img src="icons/icon-512.png" alt=""></div>
+  </div>
+  <div class="segments"><button class="seg on" data-day="0">Aujourd’hui</button><button class="seg" data-day="1">Demain</button><button class="seg" data-day="2">+2 jours</button></div>
+  <article id="best" class="card best"><span class="badge">SKIORY SCORE</span><h3>Chargement météo…</h3></article>
+  <div class="head"><div><span class="eyebrow">FRESH SNOW</span><h3>Powder Alert</h3></div><button id="refresh" class="link">Actualiser</button></div>
+  <div id="powder" class="powder"></div>
+  <div class="head"><div><span class="eyebrow">SMART PICKS</span><h3>Top recommandations</h3></div><button id="locBtn" class="link">⌖ Ma position</button></div>
+  <div id="preview" class="list"></div>
+</section>
+<section class="view" data-view="explore">
+  <div class="section-title"><div class="brand">SKIORY DISCOVER</div><h2>Explorer</h2><p class="mut">France + Valais. Compare, découvre et garde tes stations favorites à portée de pouce.</p></div>
+  <div class="toggles"><button class="pillbtn on" data-mode="list">☷ Liste</button><button class="pillbtn" data-mode="map">⌖ Carte</button></div>
+  <div class="filters"><input id="search" placeholder="Rechercher une station…"><select id="region"><option value="all">Toutes les régions</option></select></div>
+  <div class="toggles"><button class="pillbtn on" data-filter="all">Toutes</button><button class="pillbtn" data-filter="fav">★ Favoris</button><button class="pillbtn" data-filter="pass">Pass</button><button class="pillbtn" data-filter="unseen">À découvrir</button></div>
+  <div id="stationList"></div><div id="stationMap" class="map hidden"></div>
+</section>
+<section class="view" data-view="dex">
+  <div class="section-title"><div class="brand">SKIORY COLLECTION</div><h2>Ma collection</h2><p class="mut">Chaque station cochée devient une nouvelle pièce de ton histoire sur les skis.</p></div>
+  <div id="collectionHero" class="card collection-hero"></div>
+  <div class="head"><div><span class="eyebrow">ACHIEVEMENTS</span><h3>Trophées</h3></div></div><div id="trophies" class="trophies"></div>
+  <div class="head"><div><span class="eyebrow">REGIONS</span><h3>Progression</h3></div></div><div id="regionStats" class="regionstats"></div>
+  <div class="head"><div><span class="eyebrow">RESORTS</span><h3>Stations</h3></div><button id="onlyUnseen" class="link">À découvrir</button></div><div id="dex" class="dex"></div>
+</section>
+<section class="view" data-view="track">
+  <div class="section-title"><div class="brand">SKIORY TRACK</div><h2>Ma sortie</h2><p class="mut">Transforme une journée de ski en données : vitesse, distance, altitude, D+/D− et tracé GPX.</p></div>
+  <div class="card form tracker-shell"><label>Station<select id="sessionStation"></select></label><div class="session-grid">
+  <div class="card tele"><strong id="speed">0</strong><small>km/h actuel</small></div><div class="card tele"><strong id="avgSpeed">0</strong><small>km/h moyen</small></div><div class="card tele"><strong id="maxSpeed">0</strong><small>km/h max</small></div><div class="card tele"><strong id="distance">0.00</strong><small>km</small></div><div class="card tele"><strong id="alt">—</strong><small>altitude m</small></div><div class="card tele"><strong id="maxAlt">—</strong><small>alt. max m</small></div><div class="card tele"><strong id="gain">0</strong><small>D+ m</small></div><div class="card tele"><strong id="drop">0</strong><small>D− m</small></div><div class="card tele"><strong id="descents">0</strong><small>descentes*</small></div><div class="card tele"><strong id="duration">00:00</strong><small>durée</small></div>
+  </div><div id="trackMap" class="map short"></div><div id="gpsState" class="gpsstate">GPS arrêté. Les données restent sur ce téléphone.</div><div class="sessionBtns"><button id="startGps" class="primary">▶ Démarrer</button><button id="stopGps" class="danger" disabled>■ Terminer</button></div><button id="gpxCurrent" class="small full" disabled>↓ Exporter GPX</button></div>
+  <p class="note">*Le nombre de descentes est estimé à partir du profil d’altitude. Pour une trace continue, garde Skiory actif lorsque le téléphone verrouille agressivement les applications web.</p>
+</section>
+<section class="view" data-view="me">
+  <div class="section-title"><div class="brand">MY SKIORY</div><h2>Saison & profil</h2><p class="mut">Tes records, tes sorties et tout ce qui transforme une saison en collection de souvenirs.</p></div><div id="seasonStats" class="metrics"></div>
+  <div class="head"><div><span class="eyebrow">SEASON LOG</span><h3>Mes sorties</h3></div></div><div id="history" class="history"></div>
+  <div class="head"><div><span class="eyebrow">READY TO RIDE</span><h3>Checklist</h3></div><button id="resetChecks" class="link">Réinitialiser</button></div><div class="card"><div id="progress" class="brand"></div><div id="checks"></div></div>
+  <div class="head"><div><span class="eyebrow">PWA</span><h3>Installer Skiory</h3></div></div><div class="card installbox"><b>Une app sans passer par le Store</b><p id="installHelp" class="mut">Ajoute Skiory à ton écran d’accueil pour l’ouvrir comme une application.</p><button id="installBtn" class="primary">Installer / instructions</button></div>
+  <div class="head"><div><span class="eyebrow">BACKUP</span><h3>Sauvegarde</h3></div></div><div class="card"><p class="mut">Exporte collection, profils et sorties avant de changer de téléphone.</p><div class="backupBtns"><button id="exportData" class="small">↓ Exporter mes données</button><label class="small import-label">↑ Importer<input id="importData" type="file" accept="application/json" hidden></label></div></div>
+</section></main></div>
+<nav class="nav"><button class="on" data-target="home"><span>⌂</span><small>Accueil</small></button><button data-target="explore"><span>△</span><small>Explorer</small></button><button data-target="dex"><span>◈</span><small>Collection</small></button><button data-target="track"><span>◎</span><small>Sortie</small></button><button data-target="me"><span>☺</span><small>Moi</small></button></nav>
+<dialog id="dialog"><div id="dialogContent"></div><button id="closeDialog" class="small full modal-close">Fermer</button></dialog>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><script src="v3-data.js"></script><script src="skiory-brand.js"></script><script src="v3-app.js"></script>
+</body></html>

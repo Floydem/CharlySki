@@ -1,19 +1,20 @@
 {
-  "name":"CharlySki",
-  "short_name":"CharlySki",
-  "description":"Le copilote montagne de Charlie : stations, météo, CharlyDex et télémétrie GPS.",
+  "name":"Skiory",
+  "short_name":"Skiory",
+  "description":"Explore, compare et collectionne les stations. Météo, Skiory Score et télémétrie GPS.",
   "start_url":"./",
   "scope":"./",
   "display":"standalone",
   "orientation":"portrait-primary",
-  "background_color":"#06111f",
-  "theme_color":"#06111f",
+  "background_color":"#030b1c",
+  "theme_color":"#030b1c",
   "icons":[
     {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
     {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
   ],
   "shortcuts":[
-    {"name":"Explorer les stations","url":"./#explore"},
-    {"name":"Démarrer une sortie","url":"./#track"}
+    {"name":"Explorer les stations","short_name":"Explorer","url":"./#explore"},
+    {"name":"Démarrer une sortie","short_name":"Sortie","url":"./#track"},
+    {"name":"Ma collection","short_name":"Collection","url":"./#dex"}
   ]
 }

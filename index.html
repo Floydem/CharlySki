@@ -9,18 +9,23 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Skiory">
 <title>Skiory · Explore Track Higher</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="icon" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest?v=20260916b">
+<link rel="apple-touch-icon" href="icons/icon-192.png?v=20260916b">
+<link rel="icon" href="icons/icon-192.png?v=20260916b">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-<link rel="stylesheet" href="v3.css">
+<link rel="stylesheet" href="v3.css?v=20260916b">
+<link rel="stylesheet" href="skiory-fix.css?v=20260916b">
 </head>
 <body>
 <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
 <div class="app">
 <header class="top">
   <a class="brand-lockup" href="#" aria-label="Skiory">
-    <img src="assets/skiory-logo.webp" alt="Skiory">
+    <img class="brand-icon" src="icons/icon-192.png?v=20260916b" alt="">
+    <span class="brand-copy">
+      <span class="wordmark"><span class="s-mark">S</span>kiory</span>
+      <span class="brand-tag">EXPLORE · TRACK · HIGHER</span>
+    </span>
   </a>
   <button id="installTop" class="small install-top">＋ Installer</button>
 </header>
@@ -33,7 +38,7 @@
       <p>Conditions météo, neige, proximité, découverte et télémétrie réunies dans une seule expérience.</p>
       <div class="hero-pills"><span>❄️ Météo live</span><span>◎ GPS</span><span>◈ Collection</span></div>
     </div>
-    <div class="hero-mark"><img src="icons/icon-512.png" alt=""></div>
+    <div class="hero-mark"><img src="icons/icon-512.png?v=20260916b" alt=""></div>
   </div>
   <div class="segments"><button class="seg on" data-day="0">Aujourd’hui</button><button class="seg" data-day="1">Demain</button><button class="seg" data-day="2">+2 jours</button></div>
   <article id="best" class="card best"><span class="badge">SKIORY SCORE</span><h3>Chargement météo…</h3></article>
@@ -72,5 +77,9 @@
 </section></main></div>
 <nav class="nav"><button class="on" data-target="home"><span>⌂</span><small>Accueil</small></button><button data-target="explore"><span>△</span><small>Explorer</small></button><button data-target="dex"><span>◈</span><small>Collection</small></button><button data-target="track"><span>◎</span><small>Sortie</small></button><button data-target="me"><span>☺</span><small>Moi</small></button></nav>
 <dialog id="dialog"><div id="dialogContent"></div><button id="closeDialog" class="small full modal-close">Fermer</button></dialog>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><script src="v3-data.js"></script><script src="skiory-brand.js"></script><script src="v3-app.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="v3-data.js?v=20260916b"></script>
+<script src="skiory-brand.js?v=20260916b"></script>
+<script src="v3-app.js?v=20260916b"></script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{})}</script>
 </body></html>
